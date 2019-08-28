@@ -5,9 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  }, {})
+  }, {
+    modelName: 'Box',
+    sequelize
+  })
   Box.associate = function (models) {
-
+    Box.hasMany(models.File, {
+      foreignKey: 'box_id',
+      sourceKey: 'id'
+    })
   }
   return Box
 }
