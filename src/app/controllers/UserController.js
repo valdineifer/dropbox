@@ -1,6 +1,5 @@
 const UserService = require('../services/UserService')
 const ErrorService = require('../services/ErrorService')
-
 const HTTP = require('../../constants/http')
 
 class UserController {

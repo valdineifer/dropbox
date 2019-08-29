@@ -17,7 +17,8 @@
   "rules": {
     "linebreak-style": ["off", "windows"],
     "no-tabs": "warn",
-    "security/detect-object-injection": 0
+    "security/detect-object-injection": 0,
+    "comma-dangle": ["error"]
   },
   "overrides": [
     {
