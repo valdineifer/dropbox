@@ -1,67 +1,67 @@
-const { User } = require('../models')
-const Response = require('../../constants/response')
+const { User } = require('../models');
+const Response = require('../../constants/response');
 
 class UserService {
-  constructor () {
-    this.user = User
+  constructor() {
+    this.user = User;
   }
 
-  async store (body) {
-    const user = await this.check(body.email)
+  async store(body) {
+    const user = await this.check(body.email);
 
     if (!user) {
       return {
         user: await this.user.create({ ...body }),
-        ...Response.userCreated
-      }
+        ...Response.userCreated,
+      };
     }
 
-    return Response.userFound
+    return Response.userFound;
   }
 
-  async update (body) {
-    const user = await this.user.findByPk(body.id)
+  async update(body) {
+    const user = await this.user.findByPk(body.id);
 
     if (!user) {
-      return Response.userNotFound
+      return Response.userNotFound;
     }
 
-    const userAtt = await user.update({ ...body })
+    const userAtt = await user.update({ ...body });
 
     return {
       user: userAtt,
-      ...Response.userOk
-    }
+      ...Response.userOk,
+    };
   }
 
-  check (email) {
-    return this.user.findOne({ where: { email } })
+  check(email) {
+    return this.user.findOne({ where: { email } });
   }
 
-  async get (id) {
-    const user = await this.user.findByPk(id)
+  async get(id) {
+    const user = await this.user.findByPk(id);
 
     if (!user) {
-      return Response.userNotFound
+      return Response.userNotFound;
     }
 
     return {
       user,
-      ...Response.userOk
-    }
+      ...Response.userOk,
+    };
   }
 
-  async destroy (id) {
-    const user = await this.user.findByPk(id)
+  async destroy(id) {
+    const user = await this.user.findByPk(id);
 
     if (!user) {
-      return Response.userNotFound
+      return Response.userNotFound;
     }
 
-    await user.destroy()
+    await user.destroy();
 
-    return Response.userDeleted
+    return Response.userDeleted;
   }
 }
 
-module.exports = new UserService()
+module.exports = new UserService();

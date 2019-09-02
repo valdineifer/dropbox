@@ -18,6 +18,9 @@
       "pre-commit": "yarn test && yarn lint"
     }
   },
+  "engines": {
+    "node": ">=8.3.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -34,11 +37,14 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jest": "^22.5.1",
     "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
     "factory-girl": "^5.0.4",
     "faker": "^4.1.0",

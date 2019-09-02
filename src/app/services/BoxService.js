@@ -1,67 +1,67 @@
-const { Box } = require('../models')
-const Response = require('../../constants/response')
+const { Box } = require('../models');
+const Response = require('../../constants/response');
 
 class BoxService {
-  constructor () {
-    this.box = Box
+  constructor() {
+    this.box = Box;
   }
 
-  async store (body) {
-    const box = await this.check(body.title)
+  async store(body) {
+    const box = await this.check(body.title);
 
     if (!box) {
       return {
         box: await this.box.create({ ...body }),
-        ...Response.boxCreated
-      }
+        ...Response.boxCreated,
+      };
     }
 
-    return Response.boxFound
+    return Response.boxFound;
   }
 
-  async update (body) {
-    const box = await this.box.findByPk(body.id)
+  async update(body) {
+    const box = await this.box.findByPk(body.id);
 
     if (!box) {
-      return Response.boxNotFound
+      return Response.boxNotFound;
     }
 
-    const boxUpdated = await box.update({ ...body })
+    const boxUpdated = await box.update({ ...body });
 
     return {
       box: boxUpdated,
-      ...Response.boxOk
-    }
+      ...Response.boxOk,
+    };
   }
 
-  check (title) {
-    return this.box.findOne({ where: { title } })
+  check(title) {
+    return this.box.findOne({ where: { title } });
   }
 
-  async get (id) {
-    const box = await this.box.findByPk(id)
+  async get(id) {
+    const box = await this.box.findByPk(id);
 
     if (!box) {
-      return Response.boxNotFound
+      return Response.boxNotFound;
     }
 
     return {
       box,
-      ...Response.boxOk
-    }
+      ...Response.boxOk,
+    };
   }
 
-  async destroy (id) {
-    const box = await this.box.findByPk(id)
+  async destroy(id) {
+    const box = await this.box.findByPk(id);
 
     if (!box) {
-      return Response.boxNotFound
+      return Response.boxNotFound;
     }
 
-    await box.destroy()
+    await box.destroy();
 
-    return Response.boxDeleted
+    return Response.boxDeleted;
   }
 }
 
-module.exports = new BoxService()
+module.exports = new BoxService();

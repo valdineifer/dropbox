@@ -1,12 +1,12 @@
 {
-  "plugins": ["jest"],
+  "plugins": ["jest", "security", "prettier"],
   "env": {
     "commonjs": true,
     "es6": true,
     "node": true,
     "jest/globals": true
   },
-  "extends": "standard",
+  "extends": ["airbnb-base", "plugin:security/recommended", "plugin:node/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -18,7 +18,9 @@
     "linebreak-style": ["off", "windows"],
     "no-tabs": "warn",
     "security/detect-object-injection": 0,
-    "comma-dangle": ["error"]
+    "code": 120,
+    "comma-dangle": ["error"],
+    "class-methods-use-this": ["off"]
   },
   "overrides": [
     {

@@ -1,19 +1,18 @@
-'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Box = sequelize.define('Box', {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
     modelName: 'Box',
-    sequelize
-  })
+    sequelize,
+  });
   Box.associate = function (models) {
     Box.hasMany(models.File, {
       foreignKey: 'box_id',
-      sourceKey: 'id'
-    })
-  }
-  return Box
-}
+      sourceKey: 'id',
+    });
+  };
+  return Box;
+};
